@@ -27,6 +27,7 @@ export default function BirthdayLetter() {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [letterContent, setLetterContent] = useState(DEFAULT_LETTER);
+  const [startSlide, setStartSlide] = useState(false);
 
   // Load custom saved letter if exists
   useEffect(() => {
@@ -35,6 +36,21 @@ export default function BirthdayLetter() {
       setLetterContent(saved);
     }
   }, []);
+
+  const handleOpenEnvelope = () => {
+    setIsOpen(true);
+    // Slide out letter paper after flap opens (400ms delay)
+    setTimeout(() => {
+      setStartSlide(true);
+    }, 400);
+  };
+
+  const handleCloseEnvelope = () => {
+    setStartSlide(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 400);
+  };
 
   const handleSave = () => {
     localStorage.setItem('romantic_birthday_letter', letterContent);
@@ -52,55 +68,82 @@ export default function BirthdayLetter() {
   return (
     <div className="relative w-full max-w-2xl mx-auto py-12 px-4 flex flex-col items-center">
       
-      {/* Outer Envelope Wrapper */}
-      <div className="relative w-full aspect-[4/3] max-w-lg flex items-center justify-center">
+      {/* 3D Envelope Container with Perspective */}
+      <div className="relative w-full max-w-lg aspect-[4/3] flex items-center justify-center perspective-1000">
         
-        {/* Envelope Back & Flap Container */}
-        {!isOpen ? (
-          <button
-            onClick={() => setIsOpen(true)}
-            className="w-full h-56 rounded-2xl bg-gradient-to-tr from-romantic-pink-100 to-romantic-pink-200 shadow-xl border border-white/50 flex flex-col items-center justify-center p-6 text-center cursor-pointer hover:scale-103 hover:shadow-2xl hover:shadow-romantic-pink-300/20 active:scale-98 transition-all duration-500 relative group overflow-hidden"
+        {/* Closed/Opening Envelope Wrapper */}
+        {!startSlide ? (
+          <div 
+            onClick={handleOpenEnvelope}
+            className={`relative w-full h-64 sm:h-72 rounded-2xl bg-gradient-to-tr from-rose-100 to-romantic-pink-200 border border-white/40 shadow-xl flex items-center justify-center p-6 text-center cursor-pointer transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl hover:shadow-romantic-pink-200/30 ${
+              isOpen ? 'scale-95 opacity-80' : ''
+            }`}
           >
-            {/* Soft decorative background glow */}
-            <div className="absolute inset-0 bg-radial-gradient from-white/30 to-transparent pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-            
-            <div className="relative z-10 flex flex-col items-center">
-              {/* Wax Seal Circle */}
-              <div className="relative w-16 h-16 rounded-full bg-romantic-pink-500 hover:bg-romantic-pink-600 shadow-lg flex items-center justify-center text-white border-4 border-romantic-pink-200/40 animate-pulse group-hover:animate-none group-hover:scale-110 transition-all duration-300">
-                <Heart fill="currentColor" size={24} className="scale-95 group-hover:scale-105 transition-transform" />
+            {/* Top Triangular Flap */}
+            <div 
+              className={`absolute top-0 left-0 w-full h-1/2 border-b border-rose-200/40 bg-gradient-to-b from-rose-100 to-rose-150 rounded-t-2xl transform origin-top transition-transform duration-500 z-30 ${
+                isOpen ? 'rotateX-180 pointer-events-none' : ''
+              }`}
+              style={{
+                clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+              }}
+            />
+
+            {/* Side Overlapping Flaps */}
+            <div className="absolute inset-0 bg-white/5 rounded-2xl pointer-events-none z-20"
+              style={{
+                clipPath: 'polygon(0 100%, 0 0, 50% 50%)',
+                background: 'linear-gradient(to right, rgba(244, 63, 94, 0.05), transparent)'
+              }}
+            />
+            <div className="absolute inset-0 bg-white/5 rounded-2xl pointer-events-none z-20"
+              style={{
+                clipPath: 'polygon(100% 100%, 100% 0, 50% 50%)',
+                background: 'linear-gradient(to left, rgba(244, 63, 94, 0.05), transparent)'
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-rose-150 to-rose-100 rounded-2xl pointer-events-none z-10"
+              style={{
+                clipPath: 'polygon(0 100%, 100% 100%, 50% 45%)',
+              }}
+            />
+
+            {/* Outer Cover Message & Wax Seal */}
+            <div className="relative z-40 flex flex-col items-center gap-4 px-4">
+              {/* Wax Seal Button */}
+              <div className="relative w-16 h-16 rounded-full bg-rose-500 hover:bg-rose-600 shadow-md flex items-center justify-center text-white border-4 border-rose-200/50 animate-pulse transition-transform duration-300 hover:scale-110">
+                <Heart fill="currentColor" size={24} className="scale-95" />
               </div>
               
-              <h4 className="font-serif italic font-semibold text-xl text-neutral-800 mt-4 tracking-wide">
-                You have a letter from Somu
-              </h4>
-              <p className="font-sans text-[11px] text-neutral-600 uppercase tracking-widest mt-1.5 flex items-center gap-1">
-                <Sparkles size={10} className="text-romantic-gold-300 animate-spin" /> Click to Break the Seal
-              </p>
+              <div className="space-y-1">
+                <h4 className="font-serif italic font-semibold text-base sm:text-lg text-neutral-800 tracking-wide">
+                  "Open Only When You're Smiling ❤️"
+                </h4>
+                <p className="font-sans text-[10px] text-neutral-500 uppercase tracking-widest flex items-center justify-center gap-1">
+                  <Sparkles size={9} className="text-romantic-gold-300 animate-spin" /> Tap to open letter
+                </p>
+              </div>
             </div>
-            
-            {/* Envelope line decorations */}
-            <div className="absolute bottom-0 left-0 w-full h-1/2 border-t border-romantic-pink-300/30 bg-white/10 pointer-events-none skew-y-6 transform origin-bottom-left" />
-            <div className="absolute bottom-0 right-0 w-full h-1/2 border-t border-romantic-pink-300/30 bg-white/10 pointer-events-none -skew-y-6 transform origin-bottom-right" />
-          </button>
+          </div>
         ) : (
-          /* Opened Envelope and Letter Sheet */
-          <div className="w-full flex flex-col items-center transition-all duration-1000 animate-fadeIn">
+          /* Opened Unfolding Paper Sheet Container */
+          <div className="w-full flex flex-col items-center transition-all duration-700 animate-scaleIn">
             
-            {/* Letter Sheet Card */}
-            <div className="w-full glass-card border border-romantic-pink-200/40 rounded-2xl shadow-2xl px-6 py-8 md:px-10 md:py-10 relative overflow-hidden bg-white/95 border-t-4 border-t-romantic-pink-300">
+            {/* Elegant Parchment Letter Card */}
+            <div className="w-full glass-card border border-rose-200/40 rounded-3xl shadow-2xl px-6 py-8 md:px-10 md:py-10 relative overflow-hidden bg-white/95 border-t-8 border-t-rose-400">
               
-              {/* Floral corner decor */}
+              {/* Floral background decoration */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-radial-gradient from-romantic-pink-100/30 to-transparent rounded-full blur-xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-radial-gradient from-romantic-pink-100/30 to-transparent rounded-full blur-xl pointer-events-none" />
               
-              {/* Letter Title Block */}
-              <div className="flex justify-between items-center border-b border-romantic-pink-100 pb-4 mb-6">
+              {/* Letter Header Title */}
+              <div className="flex justify-between items-center border-b border-rose-100 pb-4 mb-6">
                 <div>
-                  <h3 className="font-cursive text-4xl text-romantic-pink-500 leading-none">
+                  <h3 className="font-cursive text-4xl text-rose-500 leading-none">
                     My Bacha
                   </h3>
-                  <p className="text-[10px] font-sans text-neutral-500 uppercase tracking-widest mt-1">
-                    Created with love • Persistent
+                  <p className="text-[9px] font-sans text-neutral-400 uppercase tracking-widest mt-1">
+                    Created with infinite love
                   </p>
                 </div>
                 
@@ -124,7 +167,7 @@ export default function BirthdayLetter() {
                   ) : (
                     <button
                       onClick={() => setIsEditing(true)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-romantic-pink-50 text-romantic-pink-500 hover:bg-romantic-pink-100 text-xs font-medium font-sans border border-romantic-pink-100 transition-all cursor-pointer shadow-sm"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-50 text-rose-500 hover:bg-rose-100 text-xs font-medium font-sans border border-rose-100 transition-all cursor-pointer shadow-sm animate-pulse"
                     >
                       <Edit2 size={13} /> Edit Letter
                     </button>
@@ -132,23 +175,23 @@ export default function BirthdayLetter() {
                 </div>
               </div>
 
-              {/* Letter Content Area */}
+              {/* Editable/Rendered Letter Area */}
               {isEditing ? (
                 <textarea
                   value={letterContent}
                   onChange={(e) => setLetterContent(e.target.value)}
-                  className="w-full h-80 p-4 border border-romantic-pink-200 rounded-xl font-sans text-sm text-neutral-800 leading-relaxed focus:ring-2 focus:ring-romantic-pink-300 focus:outline-none bg-romantic-pink-50/20"
+                  className="w-full h-80 p-4 border border-rose-200 rounded-2xl font-sans text-sm text-neutral-800 leading-relaxed focus:ring-2 focus:ring-rose-300 focus:outline-none bg-rose-50/20"
                 />
               ) : (
-                <div className="whitespace-pre-wrap font-serif font-light text-neutral-800 text-sm md:text-base leading-relaxed tracking-wide h-[420px] overflow-y-auto pr-2">
+                <div className="whitespace-pre-wrap font-serif font-light text-neutral-800 text-sm md:text-base leading-relaxed tracking-wide h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                   {letterContent}
                 </div>
               )}
 
-              {/* Close Letter Button */}
-              <div className="flex justify-center mt-6 pt-4 border-t border-romantic-pink-50">
+              {/* Smooth Folding Envelope Button */}
+              <div className="flex justify-center mt-6 pt-4 border-t border-rose-100/50">
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleCloseEnvelope}
                   className="px-5 py-2 rounded-full border border-neutral-200 text-xs text-neutral-500 hover:text-neutral-700 hover:bg-neutral-50 font-sans tracking-wide transition-all cursor-pointer"
                 >
                   Close & Fold Envelope
@@ -159,6 +202,30 @@ export default function BirthdayLetter() {
           </div>
         )}
       </div>
+
+      {/* Styled custom helper class styles */}
+      <style>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .rotateX-180 {
+          transform: rotateX(180deg);
+        }
+        /* Custom styled smooth scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #fbcfe8;
+          border-radius: 99px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #f472b6;
+        }
+      `}</style>
     </div>
   );
 }

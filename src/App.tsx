@@ -34,6 +34,10 @@ import EmotionalEnding from './components/EmotionalEnding';
 import BirthdayPreloader from './components/BirthdayPreloader';
 import FindMyHeart from './components/FindMyHeart';
 import HeartPuzzle from './components/HeartPuzzle';
+import FloatingButterfly from './components/FloatingButterfly';
+import LoveNotesRain from './components/LoveNotesRain';
+import BirthdayCake from './components/BirthdayCake';
+import ParallelUniverse from './components/ParallelUniverse';
 
 // Data Configurations
 import {
@@ -145,7 +149,9 @@ export default function App() {
     { id: 'funny', label: 'Funny Memories' },
     { id: 'game', label: 'Mini Game' },
     { id: 'interactive', label: 'Interactive' },
+    { id: 'cake', label: 'Birthday Cake' },
     { id: 'dreams', label: 'Future Dreams' },
+    { id: 'universe', label: 'Our Universes' },
     { id: 'surprise', label: 'Surprise Notes' },
     { id: 'find-heart', label: 'Find My Heart' },
     { id: 'heart-puzzle', label: 'Birthday Puzzle' },
@@ -181,6 +187,12 @@ export default function App() {
       
       {/* Cursor Trail of floating hearts behind mouse */}
       <CursorTrail />
+
+      {/* Floating Butterfly with surprise message */}
+      <FloatingButterfly />
+
+      {/* Love notes drifting occasionally across the screen */}
+      <LoveNotesRain />
       
       {/* 2. Floating Audio Player (Autoplays perfectly once Jagriti clicks Enter) */}
       <AudioPlayer hasEntered={hasEntered} />
@@ -694,6 +706,14 @@ export default function App() {
         </section>
 
 
+        {/* ================= Birthday Cake Section ================= */}
+        <section id="cake" className="py-24 px-4 bg-gradient-to-b from-transparent via-rose-50/5 to-transparent border-t border-romantic-pink-100/10">
+          <ScrollReveal>
+            <BirthdayCake />
+          </ScrollReveal>
+        </section>
+
+
         {/* ================= Future Dreams Section ================= */}
         <section id="dreams" className="py-24 px-4 bg-gradient-to-b from-transparent to-rose-50/15">
           <ScrollReveal className="text-center mb-16">
@@ -708,6 +728,24 @@ export default function App() {
 
           <ScrollReveal>
             <FutureDreams />
+          </ScrollReveal>
+        </section>
+
+
+        {/* ================= Parallel Universe Section ================= */}
+        <section id="universe" className="py-24 px-4 border-t border-romantic-pink-100/10 bg-gradient-to-b from-transparent via-indigo-50/5 to-transparent">
+          <ScrollReveal className="text-center mb-16">
+            <h2 className="font-serif font-medium text-3xl md:text-4xl tracking-tight text-neutral-800">
+              Parallel Universes 🌌
+            </h2>
+            <div className="w-12 h-0.5 bg-romantic-pink-300/40 mx-auto mt-3 rounded-full" />
+            <p className="font-sans font-light text-neutral-500 text-sm max-w-md mx-auto mt-3 leading-relaxed">
+              No matter the dimension, time, or space, my soul would find yours every single time.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <ParallelUniverse />
           </ScrollReveal>
         </section>
 
