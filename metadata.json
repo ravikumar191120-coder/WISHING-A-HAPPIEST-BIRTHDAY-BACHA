@@ -1,0 +1,6 @@
+{
+  "name": "Happy Birthday, My Bacha",
+  "description": "A premium, romantic, and elegant single-page birthday website with smooth scroll animations, glassmorphism, and a minimalist soft pink design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

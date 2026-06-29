@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-cursive: "Great Vibes", cursive;
+  --font-sans: "Inter", sans-serif;
+  
+  --color-romantic-pink-50: #fff5f6;
+  --color-romantic-pink-100: #ffebeb;
+  --color-romantic-pink-200: #ffd1d8;
+  --color-romantic-pink-300: #ffa3b1;
+  --color-romantic-pink-400: #ff6b84;
+  --color-romantic-pink-500: #f43f5e;
+  
+  --color-romantic-gold-50: #fefcf3;
+  --color-romantic-gold-100: #fdf6e2;
+  --color-romantic-gold-200: #fbeec1;
+  --color-romantic-gold-300: #dfb15b;
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(244, 63, 94, 0.15);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(244, 63, 94, 0.3);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fffafb;
+  color: #3d2c2e;
+  overflow-x: hidden;
+}
+
+/* Custom Glassmorphism Classes */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(244, 63, 94, 0.05);
+}
+
+.glass-card-gold {
+  background: rgba(253, 246, 226, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 40px -10px rgba(223, 177, 91, 0.05);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Polaroid Photo Card */
+.polaroid {
+  background: white;
+  padding: 12px 12px 24px 12px;
+  box-shadow: 0 15px 35px rgba(244, 63, 94, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transform: rotate(var(--rotation, 0deg));
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 25px 50px rgba(244, 63, 94, 0.12);
+  z-index: 10;
+}
+
+/* Custom Triangle Clip Path for Wheel slices */
+.clip-triangle {
+  clip-path: polygon(50% 50%, 0% 0%, 100% 0%);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+
