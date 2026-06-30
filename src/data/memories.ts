@@ -133,7 +133,7 @@ export const togetherMemories: MemoryImage[] = [
   },
   {
     id: 'tog2',
-    src: 'https://files.catbox.moe/jrvfy9.jpg',
+    src: 'https://files.catbox.moe/vjvpiq.jpg',
     fallback: 'https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?auto=format&fit=crop&w=600&q=80',
     title: 'Parallel Beats',
     caption: 'Two hearts beating as one, perfectly synchronized, writing our own fairytale.',
