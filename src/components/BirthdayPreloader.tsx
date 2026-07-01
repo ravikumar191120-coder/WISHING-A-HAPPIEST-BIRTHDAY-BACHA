@@ -134,7 +134,7 @@ export default function BirthdayPreloader({ onEnter }: BirthdayPreloaderProps) {
 
             <div className="bg-white/5 border border-white/10 rounded-2xl p-5 mb-8 max-w-[360px] text-center backdrop-blur-md">
               <p className="font-sans font-light text-xs text-neutral-300 leading-relaxed mb-3">
-                "Welcome to our magical little space. I've wrapped up our beautiful memories, sweet snaps, future dreams, and a letter straight from my heart."
+                "Welcome to our magical little space. Today, as a beautiful soul completes 18 wonderful orbits around the sun, I've wrapped up our beautiful memories, sweet snaps, future dreams, and a letter straight from my heart."
               </p>
               <div className="flex items-center justify-center gap-1.5 text-romantic-gold-200 font-sans text-[10px] uppercase tracking-wider font-semibold">
                 <Volume2 size={12} className="animate-pulse" /> Use Headphones for the best experience

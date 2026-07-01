@@ -66,7 +66,7 @@ export default function ReasonsILoveYou() {
 
   return (
     <div className="w-full max-w-lg mx-auto px-4 relative">
-      <div className="relative aspect-[4/3] w-full rounded-3xl glass-card overflow-hidden p-6 md:p-8 flex flex-col justify-between border border-white/60 shadow-xl shadow-rose-200/5 transition-all duration-500">
+      <div className="relative min-h-[420px] sm:min-h-0 sm:aspect-[4/3] w-full rounded-3xl glass-card overflow-hidden p-6 md:p-8 flex flex-col justify-between border border-white/60 shadow-xl shadow-rose-200/5 transition-all duration-500">
         
         {/* Top bar with dots */}
         <div className="flex justify-between items-center mb-4">

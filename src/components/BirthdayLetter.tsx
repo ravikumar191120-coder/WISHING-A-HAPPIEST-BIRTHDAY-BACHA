@@ -13,7 +13,7 @@ Your beautiful nature—so gentle, so pure, so full of kindness and empathy—is
 
 Tumne meri life me kya change kiya hai, main use words me fully explain nahi kar sakta. You came into my life and turned it around completely. You filled my world with color, gave me a beautiful purpose, and taught me what real connection feels like. Because of you, I am a better, happier, and more loving human being.
 
-Mujhe tumpar bahut proud feel hota hai. Seeing your dedication, your sweet hard work, and your brilliant mind makes my heart swell with pride. I am so incredibly proud to stand by your side and watch you grow every day.
+Mujhe tumpar bahut proud feel hota hai. Seeing your dedication, your sweet hard work, and your brilliant mind makes my heart swell with pride. Today, as you step into the beautiful age of 18, a new journey of dreams, maturity, and endless possibilities begins. I am so incredibly proud to stand by your side and watch you grow every day.
 
 For our future wishes, I wish us infinite sunrises and sunsets together, countless sweet coffee dates, and celebrating every single one of your birthdays hand-in-hand. I dream of us building a beautiful world together, and taking on all our paths (especially MBBS together at AIIMS Rishikesh 🏥) side-by-side.
 
